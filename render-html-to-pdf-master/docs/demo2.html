@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsPDF text</title>
+</head>
+<body>
+<h1>jsPDF</h1>
+<script src="./js/jsPdf.debug.js"></script>
+<script>
+    var doc = new jsPDF()
+
+    doc.text('Download PDF!', 10, 10)
+    doc.save('a4.pdf')
+</script>
+</body>
+</html>
