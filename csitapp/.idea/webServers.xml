@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9e1a1095-3038-46c8-b009-10dfc89d5262" name="AWS" url="http://ec2-34-217-69-44.us-west-2.compute.amazonaws.com">
+        <fileTransfer host="ec2-34-217-69-44.us-west-2.compute.amazonaws.com" port="22" privateKey="C:\Users\Kick\Desktop\csit_key.ppk" rootFolder="/var/www/html" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
