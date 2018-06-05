@@ -6,6 +6,11 @@ $current_file = $_SERVER['PHP_SELF'];
 $current_file = basename($current_file, ".php");
 //echo $current_file; //查看目前取得後的檔名
 ?>
+<head>
+    <meta name="google-signin-client_id"
+          content="401883675537-ak2u3a09rhn2ot4fdn1prjgpm4i20ppp.apps.googleusercontent.com">
+</head>
+
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
@@ -15,7 +20,7 @@ $current_file = basename($current_file, ".php");
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">CSIT Admin v1.0</a>
+        <a class="navbar-brand" href="owner.php">CSIT Admin-Owner v1.0</a>
 
     </div>
 
@@ -26,12 +31,12 @@ $current_file = basename($current_file, ".php");
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a onclick="signOut();" href="../logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+<!--                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>-->
+<!--                </li>-->
+<!--                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>-->
+<!--                </li>-->
+<!--                <li class="divider"></li>-->
+                <li><a onload="signOut()" href="../logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -54,20 +59,14 @@ $current_file = basename($current_file, ".php");
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="../admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="../admin/owner.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="news.php"><i class="fa fa-bar-chart-o fa-fw"></i> News</a>
-
+                    <a href="owner_staff_management.php"><i class="fa fa-users fa-fw"></i> Staff Management</a>
                 </li>
                 <li>
-                    <a href="events.php"><i class="fa fa-tasks fa-fw"></i> Events</a>
+                    <a href="owner_feedback.php"><i class="fa fa-envelope fa-fw"></i> User Feedback</a>
                 </li>
-                <li>
-                    <a href="contact.php"><i class="fa fa-users fa-fw"></i> Contact</a>
-                    <!-- /.nav-second-level -->
-                </li>
-
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

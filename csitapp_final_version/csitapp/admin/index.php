@@ -135,7 +135,7 @@ $events = get_all_events();
 
         <!-- time line(workload) -->
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-clock-o fa-fw"></i> All Timeline(workload)
@@ -143,9 +143,12 @@ $events = get_all_events();
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#news_time_line" aria-controls="news_time_line" role="tab" data-toggle="tab">News</a>
+                            <li role="presentation" class="active"><a href="#news_time_line"
+                                                                      aria-controls="news_time_line" role="tab"
+                                                                      data-toggle="tab">News</a>
                             </li>
-                            <li role="presentation"><a href="#events_time_line" aria-controls="events_time_line" role="tab" data-toggle="tab">Events</a>
+                            <li role="presentation"><a href="#events_time_line" aria-controls="events_time_line"
+                                                       role="tab" data-toggle="tab">Events</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -164,8 +167,10 @@ $events = get_all_events();
                                                         <h4 class="timeline-title"><?php echo $news['title']; ?></h4>
                                                         <p>
                                                             <small class="text-muted"><i
-                                                                        class="fa fa-clock-o"></i> <?php echo $news['create_date']; ?>
+                                                                        class="fa fa-clock-o"></i> <?php echo $news['due_date']; ?>
+                                                                (Due date)
                                                             </small>
+
                                                         </p>
                                                     </div>
                                                 </div>
@@ -199,6 +204,7 @@ $events = get_all_events();
                                                         <p>
                                                             <small class="text-muted"><i
                                                                         class="fa fa-clock-o"></i> <?php echo $events['start_date']; ?>
+                                                                (Start date)
                                                             </small>
                                                         </p>
                                                     </div>
@@ -225,199 +231,115 @@ $events = get_all_events();
                 <!-- /.panel -->
             </div>
 
-
-            <!-- 通知栏/.col-lg-8 -->
-            <div class="col-lg-4">
+            <!-- feedback/.col-lg-8 -->
+            <div class="col-lg-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        <i class="fa fa-bell fa-fw"></i> Feedback
                     </div>
-                    <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-money fa-fw"></i> Payment Received
-                                <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                            </a>
+                            <form id="feedback">
+                                <div class="form-group">
+                                    <label>Write down what you want to say.</label>
+                                    <textarea id="content" class="form-control" rows="5"></textarea>
+                                    <input type="hidden" id="feedback_user"
+                                           value="<?PHP echo $user_authority['username']; ?>">
+                                </div>
+                                <button type="submit" class="list-group-item">Send</button>
+                            </form>
+                            <!--                            <a href="#" class="list-group-item">-->
+                            <!--                                <i class="fa fa-comment fa-fw"></i> New Comment-->
+                            <!--                                <span class="pull-right text-muted small"><em>4 minutes ago</em>-->
+                            <!--                                                </span>-->
+                            <!--                            </a>-->
                         </div>
-                        <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                     </div>
-                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
-
-                <div class="chat-panel panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-comments fa-fw"></i> Chat
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-chevron-down"></i>
-                            </button>
-                            <ul class="dropdown-menu slidedown">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-refresh fa-fw"></i> Refresh
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-check-circle fa-fw"></i> Available
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-times fa-fw"></i> Busy
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-clock-o fa-fw"></i> Away
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-sign-out fa-fw"></i> Sign Out
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <ul class="chat">
-                            <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong>
-                                        <small class="pull-right text-muted">
-                                            <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                        </small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted">
-                                            <i class="fa fa-clock-o fa-fw"></i> 13 mins ago
-                                        </small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">Jack Sparrow</strong>
-                                        <small class="pull-right text-muted">
-                                            <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
-                                        </small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar"
-                                             class="img-circle"/>
-                                    </span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <small class=" text-muted">
-                                            <i class="fa fa-clock-o fa-fw"></i> 15 mins ago
-                                        </small>
-                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum
-                                        ornare dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.panel-body -->
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm"
-                                   placeholder="Type your message here..."/>
-                            <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                        </div>
-                    </div>
-                    <!-- /.panel-footer -->
-                </div>
-                <!-- /.panel .chat-panel -->
             </div>
+
+            <!-- notification/.col-lg-8 -->
+            <!--            <div class="col-lg-4">-->
+            <!--                <div class="panel panel-default">-->
+            <!--                    <div class="panel-heading">-->
+            <!--                        <i class="fa fa-bell fa-fw"></i> Notifications Panel-->
+            <!--                    </div>-->
+            <!--                    <!-- /.panel-heading -->
+            <!--                    <div class="panel-body">-->
+            <!--                        <div class="list-group">-->
+            <!--                            <a href="#" class="list-group-item">-->
+            <!--                                <i class="fa fa-comment fa-fw"></i> New Comment-->
+            <!--                                <span class="pull-right text-muted small"><em>4 minutes ago</em>-->
+            <!--                                    </span>-->
+            <!--                            </a>-->
+            <!--
+            <!--                        </div>-->
+            <!--                        <!-- /.list-group -->
+            <!--                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>-->
+            <!--                    </div>-->
+            <!--                    <!-- /.panel-body -->
+            <!--                </div>-->
+            <!--                <!-- /.panel -->
+            <!-- chat bot -->
+            <!--                <div class="chat-panel panel panel-default">-->
+            <!--                    <div class="panel-heading">-->
+            <!--                        <i class="fa fa-comments fa-fw"></i> Chat-->
+            <!--                        <div class="btn-group pull-right">-->
+            <!--                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+            <!--                                <i class="fa fa-chevron-down"></i>-->
+            <!--                            </button>-->
+            <!--                            <ul class="dropdown-menu slidedown">-->
+            <!--                                <li>-->
+            <!--                                    <a href="#">-->
+            <!--                                        <i class="fa fa-refresh fa-fw"></i> Refresh-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                                    <a href="#">-->
+            <!--                                        <i class="fa fa-sign-out fa-fw"></i> Sign Out-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                            </ul>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                    <!-- /.panel-heading -->
+            <!--                    <div class="panel-body">-->
+            <!--                        <ul class="chat">-->
+            <!--                            <li class="left clearfix">-->
+            <!--                                    <span class="chat-img pull-left">-->
+            <!--                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar"-->
+            <!--                                             class="img-circle"/>-->
+            <!--                                    </span>-->
+            <!--                                <div class="chat-body clearfix">-->
+            <!--                                    <div class="header">-->
+            <!--                                        <strong class="primary-font">Jack Sparrow</strong>-->
+            <!--                                        <small class="pull-right text-muted">-->
+            <!--                                            <i class="fa fa-clock-o fa-fw"></i> 12 mins ago-->
+            <!--                                        </small>-->
+            <!--                                    </div>-->
+            <!--                                    <p>-->
+            <!--                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum-->
+            <!--                                        ornare dolor, quis ullamcorper ligula sodales.-->
+            <!--                                    </p>-->
+            <!--                                </div>-->
+            <!--                            </li>-->
+            <!--                        </ul>-->
+            <!--                    </div>-->
+            <!--                    <!-- /.panel-body -->
+            <!--                    <div class="panel-footer">-->
+            <!--                        <div class="input-group">-->
+            <!--                            <input id="btn-input" type="text" class="form-control input-sm"-->
+            <!--                                   placeholder="Type your message here..."/>-->
+            <!--                            <span class="input-group-btn">-->
+            <!--                                    <button class="btn btn-warning btn-sm" id="btn-chat">-->
+            <!--                                        Send-->
+            <!--                                    </button>-->
+            <!--                                </span>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                    <!-- /.panel-footer -->
+            <!--                </div>-->
+            <!--                <!-- /.panel .chat-panel -->
+            <!--            </div>-->
             <!-- /.col-lg-4 -->
         </div>
         <!-- /.row -->
@@ -443,7 +365,6 @@ $events = get_all_events();
 <script src="../js/morris-data.js"></script>
 
 
-
 </body>
 <script>
     $("").click(function (e) {
@@ -451,6 +372,50 @@ $events = get_all_events();
         $(this).tab('show')
     })
 </script>
+<script>
+    <!-- Post JavaScript -->
+    $("#feedback").on("submit", function () {
+        //加入loading icon
+        $("div.loading").html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>');
 
+        if ($("#content").val() == '') {
+            alert("Please write your feedback");
+
+            //清掉 loading icon
+            $("div.loading").html('');
+        } else {
+            //使用 ajax 送出 帳密給 verify_user.php
+            $.ajax({
+                type: "POST",
+                url: "../php/add_feedback.php", //因為此檔案是放在 admin 資料夾內，若要前往 php，就要回上一層 ../ 找到 php 才能進入 add_article.php
+                data: {
+                    name: $("#feedback_user").val(), //使用者帳號
+                    content: $("#content").val() //使用者帳號
+
+                },
+                dataType: 'html' //設定該網頁回應的會是 html 格式
+            }).done(function (data) {
+                //data output test
+                console.log(data);
+                data = data.replace(/[\r\n]/g, "")
+                console.log(data);
+                if (data == "yes") {
+                    //註冊新增成功，轉跳到登入頁面。
+                    alert("Your feedback have been send!!");
+                    window.location.href = "index.php";
+                }
+                else {
+                    alert("Something fail to send!");
+                }
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                //失敗的時候
+                alert("Something wrong please check console log");
+                console.log(jqXHR.responseText);
+            });
+        }
+        return false;
+    });
+</script>
 </html>
 

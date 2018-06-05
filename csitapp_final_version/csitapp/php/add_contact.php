@@ -19,10 +19,5 @@ else
     echo 'no';
 }
 //}
-//else
-//{
-//若為 null 或者 false 代表失敗
-//    echo 'no';
-//}
 
 ?>

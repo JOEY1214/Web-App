@@ -116,7 +116,7 @@ if (is_null($event_edit)) {
                                     <div class="form-group">
                                         <label>Start date of event</label>
                                         <input id="datepicker" class="form-control"
-                                               placeholder="<?php echo $event_edit['start_date']; ?>">
+                                               value="<?php echo $event_edit['start_date']; ?>">
                                     </div>
 <!--                                    <div class="form-group">-->
 <!--                                        <label>Author ID</label>-->

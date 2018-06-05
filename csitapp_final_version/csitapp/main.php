@@ -86,8 +86,7 @@ $news = get_all_news();
                 <hr>
                 <div class="col-lg-8 mx-auto">
                     <p class="text-faded mb-5">Start to browse CSIT news and events.</p>
-                    <div class="dropdown-divider"></div>
-                    <a class="col-lg-6 btn btn-primary btn-xl js-scroll-trigger" href="index.php" onclick="signOut();">click here to sign out</a>
+                    <a class="col-lg-6 btn btn-primary btn-xl js-scroll-trigger" href="#deadline" >Get Started!</a>
                 </div>
             </div>
         </div>

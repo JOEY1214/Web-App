@@ -139,6 +139,9 @@ function add_user($username)
 
     //宣告要回傳的結果
     $result = null;
+    //take email name for user
+    $name = explode("@",$username);
+
     //先把密碼用md5加密
     // $password = md5($password);
     $signupdate = date("Y-m-d");
@@ -146,7 +149,7 @@ function add_user($username)
     //set a authority for first sign up user
     $authority = 'visitor';
     //將查詢語法當成字串，記錄在$sql變數中
-    $sql = "INSERT INTO `user` (`username`,`sign_up_date`,`authority`) VALUE ('{$username}', '{$signupdate}','{$authority}');";
+    $sql = "INSERT INTO `user` (`username`,`nickname`,`sign_up_date`,`authority`) VALUE ('{$username}', '{$name[0]}','{$signupdate}','{$authority}');";
 
     //用 mysqli_query 方法取執行請求（也就是sql語法），請求後的結果存在 $query 變數中
     $query = mysqli_query($_SESSION['link'], $sql);
@@ -244,7 +247,7 @@ function get_all_news()
     $datas = array();
 
     //將查詢語法當成字串，記錄在$sql變數中
-    $sql = "SELECT * FROM `news` ORDER BY `create_date` DESC;"; // ORDER BY `create_date` DESC 代表是排序，使用 `create_date` 這欄位， DESC 是從最大到最小(最新到最舊)
+    $sql = "SELECT * FROM `news` ORDER BY `due_date` ASC;"; // ORDER BY `create_date` DESC 代表是排序，使用 `create_date` 這欄位， DESC 是從最大到最小(最新到最舊)
 
     //用 mysqli_query 方法取執行請求（也就是sql語法），請求後的結果存在 $query 變數中
     $query = mysqli_query($_SESSION['link'], $sql);
@@ -347,7 +350,7 @@ function add_news($title, $category, $due_date, $image_path, $content)
 /**
  * 更新文章
  */
-function update_news($id, $title, $category, $due_date, $image_path,$content)
+function update_news($id, $title, $category, $due_date, $image_path, $content)
 {
     //宣告要回傳的結果
     $result = null;
@@ -398,8 +401,7 @@ function del_news($id)
     $result = null;
     //Delete image with this id
     $image = get_news($id);
-    if(file_exists("../" . $image['image_path']))
-    {
+    if (file_exists("../" . $image['image_path'])) {
         unlink("../" . $image['image_path']);
     }
     //Delete data form new table
@@ -433,7 +435,7 @@ function get_all_events()
     $datas = array();
 
     //將查詢語法當成字串，記錄在$sql變數中
-    $sql = "SELECT * FROM `event` ORDER BY `start_date` DESC;"; // ORDER BY `create_date` DESC 代表是排序，使用 `create_date` 這欄位， DESC 是從最大到最小(最新到最舊)
+    $sql = "SELECT * FROM `event` ORDER BY `start_date` ASC;"; // ORDER BY `create_date` DESC 代表是排序，使用 `create_date` 這欄位， DESC 是從最大到最小(最新到最舊)
 
     //用 mysqli_query 方法取執行請求（也就是sql語法），請求後的結果存在 $query 變數中
     $query = mysqli_query($_SESSION['link'], $sql);
@@ -589,8 +591,7 @@ function del_event($id)
     $result = null;
     //Delete image with this id
     $image = get_event($id);
-    if(file_exists("../" . $image['image_path']))
-    {
+    if (file_exists("../" . $image['image_path'])) {
         unlink("../" . $image['image_path']);
     }
 
@@ -686,7 +687,9 @@ function get_contact($id)
     return $result;
 }
 
-//add contact function
+/**
+ * add contact
+ */
 function add_contacts($name, $image_path, $identity, $office, $phone, $email, $department, $content)
 {
     //宣告要回傳的結果
@@ -777,8 +780,7 @@ function del_contact($id)
     $result = null;
     //Delete image with this id
     $image = get_contact($id);
-    if(file_exists("../" . $image['image_path']))
-    {
+    if (file_exists("../" . $image['image_path'])) {
         unlink("../" . $image['image_path']);
     }
 
@@ -953,11 +955,11 @@ function del_staff($id)
     //宣告要回傳的結果
     $result = null;
     //Delete image with this id
-    $image = get_event($id);
-    if(file_exists("../" . $image['image_path']))
-    {
-        unlink("../" . $image['image_path']);
-    }
+//    $image = get_event($id);
+//    if(file_exists("../" . $image['image_path']))
+//    {
+//        unlink("../" . $image['image_path']);
+//    }
 
     //delete data from event table
     $sql = "DELETE FROM `user` WHERE `id` = {$id};";
@@ -979,6 +981,76 @@ function del_staff($id)
 
     //回傳結果
     return $result;
+}
+
+/**
+ * add feedback
+ */
+function add_feedback($name, $content)
+{
+    //宣告要回傳的結果
+    $result = null;
+    //內容處理html
+    $content = htmlspecialchars($content);
+    //set current date
+    $create_date = date("Y-m-d");
+    //新增語法
+    $sql = "INSERT INTO `feedback` (`username`, `create_date`, `content`)
+  				VALUE ('{$name}', '{$create_date}', '{$content}');";
+
+    //用 mysqli_query 方法取執行請求（也就是sql語法），請求後的結果存在 $query 變數中
+    $query = mysqli_query($_SESSION['link'], $sql);
+
+    //如果請求成功
+    if ($query) {
+        //使用 mysqli_affected_rows 判別異動的資料有幾筆，基本上只有新增一筆，所以判別是否 == 1
+        if (mysqli_affected_rows($_SESSION['link']) == 1) {
+            //取得的量大於0代表有資料
+            //回傳的 $result 就給 true 代表有該帳號，不可以被新增
+            $result = true;
+        }
+    } else {
+        echo "{$sql} 語法執行失敗，錯誤訊息：" . mysqli_error($_SESSION['link']);
+    }
+
+    //回傳結果
+    return $result;
+}
+
+/**
+ * get all feedback
+ */
+function get_all_feedback()
+{
+    //宣告空的陣列
+    $datas = array();
+
+    //將查詢語法當成字串，記錄在$sql變數中
+    $sql = "SELECT * FROM `feedback` ORDER BY `create_date` DESC;"; // ORDER BY `create_date` DESC 代表是排序，使用 `create_date` 這欄位， DESC 是從最大到最小(最新到最舊)
+
+    //用 mysqli_query 方法取執行請求（也就是sql語法），請求後的結果存在 $query 變數中
+    $query = mysqli_query($_SESSION['link'], $sql);
+
+    //如果請求成功
+    if ($query) {
+        //使用 mysqli_num_rows 方法，判別執行的語法，其取得的資料量，是否大於0
+        if (mysqli_num_rows($query) > 0) {
+            //取得的量大於0代表有資料
+            //while迴圈會根據查詢筆數，決定跑的次數
+            //mysqli_fetch_assoc 方法取得 一筆值
+            while ($row = mysqli_fetch_assoc($query)) {
+                $datas[] = $row;
+            }
+        }
+
+        //釋放資料庫查詢到的記憶體
+        mysqli_free_result($query);
+    } else {
+        echo "{$sql} 語法執行失敗，錯誤訊息：" . mysqli_error($_SESSION['link']);
+    }
+
+    //回傳結果
+    return $datas;
 }
 ?>
 
